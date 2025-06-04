@@ -15,7 +15,7 @@ import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@WebMvcTest(TaskController.class)
+@WebMvcTest(TaskControllerService.class)
 public class TaskControllerTest {
 
     @Autowired
@@ -38,7 +38,7 @@ public class TaskControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(input)))
                 .andExpect(status().isCreated())
-                .andExpect(jsonPath("$.id").value(0))
+                .andExpect(jsonPath("$.id").value(1))
                 .andExpect(jsonPath("$.title").value("Tarea de prueba"))
                 .andExpect(jsonPath("$.description").value("Descripción de prueba"))
                 .andExpect(jsonPath("$.completed").value(false));
