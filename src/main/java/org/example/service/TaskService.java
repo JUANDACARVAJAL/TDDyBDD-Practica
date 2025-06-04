@@ -1,6 +1,7 @@
 package org.example.service;
 
 import org.example.model.Task;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.sql.*;
 import java.util.*;
@@ -8,6 +9,7 @@ import java.util.*;
 public class TaskService {
 
     private Connection conn;
+    private JdbcTemplate jdbcTemplate;
 
     public TaskService() {
         try {
@@ -16,7 +18,7 @@ public class TaskService {
                     "CREATE TABLE tasks (id IDENTITY PRIMARY KEY, title VARCHAR, description VARCHAR, completed BOOLEAN)"
             );
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+           // throw new RuntimeException(e);
         }
     }
 
@@ -41,6 +43,23 @@ public class TaskService {
     }
 
     public List<Task> getTasks() {
-        return new ArrayList<>();
+        List<Task> tasks = new ArrayList<>();
+        try {
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM tasks");
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Task task = new Task();
+                task.setId(rs.getInt("id"));
+                task.setTitle(rs.getString("title"));
+                task.setDescription(rs.getString("description"));
+                tasks.add(task);
+            }
+
+            return tasks;
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
