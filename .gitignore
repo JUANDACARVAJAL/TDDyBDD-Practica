@@ -1,3 +1,23 @@
-.gradle
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+
+# Gradle build
 build/
-.idea
+.gradle/
+
+# Logs
+*.log
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# Java class files
+*.class
+
+# Eclipse
+.project
+.classpath
+.settings/
