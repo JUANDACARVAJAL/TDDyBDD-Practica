@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/task")
+@RequestMapping("/tasks")
 public class TaskControllerService {
 
     private TaskService service = new TaskService();
