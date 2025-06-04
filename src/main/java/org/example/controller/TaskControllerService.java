@@ -1,11 +1,13 @@
 package org.example.controller;
 
+import org.aspectj.bridge.Message;
 import org.example.model.Task;
 import org.example.repository.TaskRepository;
 import org.example.service.TaskService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Provider;
 import java.util.List;
 
 @RestController
@@ -16,8 +18,12 @@ public class TaskControllerService {
 
     @PostMapping
     public ResponseEntity<Task> createTask(@RequestBody Task task) {
-        Task saved = service.addTask(task);
-        return ResponseEntity.status(201).body(saved);
+        if (task.getTitle() == null || task.getDescription() == null) {
+            return ResponseEntity.status(400).body(new Task("",""));
+        }else{
+            Task saved = service.addTask(task);
+            return ResponseEntity.status(201).body(saved);
+        }
     }
 
     @GetMapping

@@ -5,7 +5,6 @@ import lombok.*;
 
 @Entity
 @Data
-@NoArgsConstructor
 public class Task {
 
     @Id

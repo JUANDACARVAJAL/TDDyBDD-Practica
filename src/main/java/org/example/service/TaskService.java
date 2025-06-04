@@ -49,7 +49,7 @@ public class TaskService {
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
-                Task task = new Task();
+                Task task = new Task("dd","");
                 task.setId(rs.getInt("id"));
                 task.setTitle(rs.getString("title"));
                 task.setDescription(rs.getString("description"));

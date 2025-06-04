@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 public class TaskController {
 
     private final TaskRepository repository;
+
     public TaskController(TaskRepository repository) {
         this.repository = repository;
     }
