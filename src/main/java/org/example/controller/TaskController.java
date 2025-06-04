@@ -17,7 +17,6 @@ public class TaskController {
 
     @PostMapping
     public ResponseEntity<Task> createTask(@RequestBody Task task) {
-        task.setCompleted(false);
         Task saved = repository.save(task);
         return ResponseEntity.status(201).body(saved);
     }

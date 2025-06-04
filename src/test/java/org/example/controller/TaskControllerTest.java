@@ -42,6 +42,6 @@ public class TaskControllerTest {
                 .andExpect(jsonPath("$.title").value("Tarea de prueba"))
                 .andExpect(jsonPath("$.description").value("Descripción de prueba"))
                 .andExpect(jsonPath("$.completed").value(false));
-
+;
     }
 }
